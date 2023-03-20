@@ -1,0 +1,84 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar 19 14:29:38 2023
+
+@author: SC43822
+"""
+
+import torch 
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+from tqdm import tqdm 
+import  torch.nn as nn 
+import torch.optim as optim 
+from modle import UNET 
+
+#from utils import (load_checkpoint,save_checkpoints,get_loaders,check_accuracy,save_predictions_as_imgs)
+
+
+#Hyperparameters
+
+LEARNING_RATE=1e-4
+DEVICE="cuda" if torch.cuda.is_available() else "cpu"
+BATCH_SIZE=16
+NUM_EPOCHS=3
+NUM_WORKERS=2
+IMAGE_HEIGHT=160
+IMAGE_WIDTH=240
+PIN_MEMORY=True
+Load_Model=False
+Train_IMG_DIR=
+TRAIN_MASK_DIR=
+VAL_IMG_DIR=
+VAL_MASK_DIR=
+
+def train_fn(loader,model,optimizer,loss_fn,scaler):
+    loop=tqdm(loader)
+    
+    for batch_idx,(data,targets) in enumerate(loop):
+        data=data.to(device=DEVICE)
+        targets=targets.float().unsqueeze(1).to(device=DEVICE)
+        
+         # forward 
+         with torch.cuda.amp.autocast():
+             predictions=model(data)
+             loss=loss_fn(predictions,targets)
+        #backward
+        optimizer.zero_grad()
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
+        
+        # update tqdm loop
+        loop.set_postfix(loss=loss.item())
+        
+        
+                         
+    
+
+def main():
+    
+    
+    
+    
+    model =UNET(in_channels=3, out_channels=2).to(DEVICE)
+    loss_fn=nn.CrossEntropyLoss()
+    optimizer=optim.Adam(model.parameters(),lr=LEARNING_RATE)
+    train_loader,val_loader=get_loaders(TRAIN_IMG_DIR,TRAIN_MASK_DIR,VAL_IMG_dir,VAL_MASK_dir,BATCH_SIZE,train_transfrom,
+                                        val_transforms, NUM_WORKERS,PIN_MEMORY)
+    
+    scaler=torch_cuda.amp.GradScaler()
+    for epoch in range(NUM_EPOCHS):
+        train_fn(train_loader,model,optimizer,loss_fn,scaler)
+        #sva model 
+        #check accuracy
+        
+        
+        
+        
+    
+    
+
+
+if __name__()__="__main__":
+    main()
