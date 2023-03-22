@@ -7,14 +7,14 @@ Link to download dataset used for test ( https://drive.google.com/drive/folders/
 Link to download best checkpoint (https://drive.google.com/drive/folders/1XjGzut4a3JIhq-Nkbg4-choc1ImyaWpF?usp=share_link)
 
 ## Requirement 
-pytorch
-torchvision 
+- pytorch
+- torchvision 
 
 ## Training 
-python train.py
+- python train.py
 
 ## Prediction 
-python predict.py -i  input image  -o output image
+- python predict.py -i  input image  -o output image
 
 
 Reference:
