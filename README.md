@@ -6,7 +6,7 @@ Link to download dataset used for training (https://drive.google.com/drive/folde
 Link to download dataset used for test ( https://drive.google.com/drive/folders/1kH96RBCpEI6kP-NcoQpPBBBa4urTlepK?usp=share_link)
 Link to download best checkpoint (https://drive.google.com/drive/folders/1XjGzut4a3JIhq-Nkbg4-choc1ImyaWpF?usp=share_link)
 
-## Requirement 
+## Requirements
 - pytorch
 - torchvision 
 
