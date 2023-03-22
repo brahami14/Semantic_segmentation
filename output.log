@@ -1,0 +1,21 @@
+INFO: Starting training:
+        Epochs:          20
+        Batch size:      64
+        Learning rate:   0.001
+        Training size:   151
+        Validation size: 1
+        Checkpoints:     True
+        Device:          cuda
+        Images scaling:  0.5
+        Mixed Precision: True
+Epoch 1/20:   0%|                                                                                                                                                                         | 0/151 [00:09<?, ?img/s]
+Traceback (most recent call last):
+  File "train.py", line 264, in <module>
+    train_model(
+  File "train.py", line 145, in train_model
+    grad_scaler.scale(loss).backward()
+  File "/shared/home/sc43822/virtual_env/venv_with_python3.8/lib/python3.8/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/shared/home/sc43822/virtual_env/venv_with_python3.8/lib/python3.8/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: GET was unable to find an engine to execute this computation
